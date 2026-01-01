@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>sample-java-assignment-app</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>sample-java-assignment-app</name>
 	<description>Java Assignment projects to Learn</description>
 	<url/>
