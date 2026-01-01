@@ -45,6 +45,14 @@ jobs:
       - name: Run Integration Tests & JaCoCo
         run: mvn verify
 
+      - name: Upload JaCoCo HTML Report2
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: target/*.jar
+
+      
+
 
       - name: Package JAR
         run: mvn package -DskipTests
