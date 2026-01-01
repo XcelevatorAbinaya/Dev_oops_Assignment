@@ -57,7 +57,4 @@ jobs:
           path: target/site/jacoco
 
 
-      - name: Publish JAR to GitHub Package Registry
-        run: mvn deploy -DskipTests
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
