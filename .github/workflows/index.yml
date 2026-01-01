@@ -13,7 +13,7 @@ permissions:
   packages: write
 
 jobs:
-  ci:
+  ContinuousIntegration:
     name: Build → Test → Coverage → Package
     runs-on: ubuntu-latest
 
@@ -21,6 +21,7 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v4
+
 
 
       - name: Setup JDK 17
@@ -44,6 +45,14 @@ jobs:
 
       - name: Run Integration Tests & JaCoCo
         run: mvn verify
+
+      - name: Upload JaCoCo HTML Report2
+        uses: actions/upload-artifact@v4
+        with:
+          name: Jar_file
+          path: target/*.jar
+
+      
 
 
       - name: Package JAR
