@@ -56,5 +56,11 @@ jobs:
           name: jacoco-report
           path: target/site/jacoco
 
+      - name: Jar file
+        uses: actions/upload-artifact@v4
+        with:
+          name: Jar file
+          path: target/*.jar
+
 
 
