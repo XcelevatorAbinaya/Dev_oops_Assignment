@@ -43,12 +43,12 @@ jobs:
           name: application-jar
           path: target/*.jar
 
-      - name: Printing the Variable and Secrets
-        run: |
-          echo " Programming language : $PRO_LANGUAGE"
-          echo " JDK version : $VERSION"
-          echo " User name : $USERNAME"
-          echo " Password : $PASS"
+#      - name: Printing the Variable and Secrets
+#        run: |
+#          echo " Programming language : $PRO_LANGUAGE"
+#          echo " JDK version : $VERSION"
+#          echo " User name : $USERNAME"
+#          echo " Password : $PASS"
         env:
           PRO_LANGUAGE: ${{ vars.PRO_LANGUAGE }}
           VERSION: ${{ vars.VERSION }}
@@ -60,34 +60,3 @@ jobs:
         run: mvn deploy -DskipTests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
-  deploy:
-    needs: build-test-package
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download JAR artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: application-jar
-          path: app
-
-      - name: Copy JAR to EC2
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_KEY }}
-          port: ${{ secrets.EC2_PORT }}
-          source: "app/*.jar"
-          target: "/home/ubuntu/app"
-
-      - name: Run application on EC2
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_KEY }}
-          port: ${{ secrets.EC2_PORT }}
-          script: |
-            pkill -f java || true
-            nohup java -jar /home/ubuntu/app/*.jar > app.log 2>&1 &
