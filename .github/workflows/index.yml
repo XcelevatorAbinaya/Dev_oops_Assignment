@@ -31,29 +31,25 @@ jobs:
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
 
-      - name: Build Application
-        run: mvn clean compile
+      # 🔹 One clean CI command
+      - name: Build, Test, Integration Test & Coverage
+        run: mvn clean verify
 
-      - name: Run Unit Tests
-        run: mvn test
-
-      - name: Run Integration Tests & Generate JaCoCo Report
-        run: mvn verify
-
+      # 🔹 Upload JaCoCo HTML report
       - name: Upload JaCoCo HTML Report
         uses: actions/upload-artifact@v4
         with:
           name: jacoco-html-report
           path: target/site/jacoco
 
-      - name: Package JAR
-        run: mvn package -DskipTests
-      - name: Upload Jar file
+      # 🔹 Upload JAR
+      - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
-          name: jar file
+          name: application-jar
           path: target/*.jar
 
+      # 🔹 Deploy only from main
       - name: Publish JAR to GitHub Packages
         if: github.ref == 'refs/heads/main'
         run: mvn deploy -DskipTests
