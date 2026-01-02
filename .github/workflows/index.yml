@@ -43,17 +43,17 @@ jobs:
           name: application-jar
           path: target/*.jar
 
-#      - name: Printing the Variable and Secrets
-#        run: |
-#          echo " Programming language : $PRO_LANGUAGE"
-#          echo " JDK version : $VERSION"
-#          echo " User name : $USERNAME"
-#          echo " Password : $PASS"
+      - name: Printing the Variable and Secrets
+        run: |
+          echo " Programming language : $WAI"
+          echo " JDK version : $WHOAMI"
+          echo " User name : $USERNAME"
+          echo " Password : $PASS"
         env:
-          PRO_LANGUAGE: ${{ vars.PRO_LANGUAGE }}
-          VERSION: ${{ vars.VERSION }}
-          USERNAME: ${{ secrets.USERNAME }}
-          PASS: ${{ secrets.PASS }}
+          WAI: ${{ vars.WHEREAMI }}
+          WHOAMI: ${{ vars.WHOAMI }}
+          USERNAME: ${{ secrets.COMPANION }}
+          PASS: ${{ secrets.NAME }}
 
 
       - name: Publish to Github Packages
