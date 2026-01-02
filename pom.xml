@@ -15,7 +15,7 @@
 
 	<groupId>Xcelevate</groupId>
 	<artifactId>sample-java-assignment-app</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.5</version>
 
 	<properties>
 		<java.version>17</java.version>
@@ -88,7 +88,8 @@
 		<repository>
 			<id>github</id>
 			<name>GitHub Packages</name>
-			<url>https://github.com/XcelevatorAbinaya/Dev_oops_Assignment.git</url>
+			<url>https://maven.pkg.github.com/XcelevatorAbinaya/Dev_oops_Assignment</url>
+
 		</repository>
 	</distributionManagement>
 
