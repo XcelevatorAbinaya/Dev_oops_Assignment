@@ -83,6 +83,14 @@
 
 		</plugins>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/XcelevatorAbinaya/Dev_oops_Assignment</url>
+		</repository>
+	</distributionManagement>
+
 
 
 

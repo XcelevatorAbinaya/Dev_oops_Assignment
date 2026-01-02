@@ -13,16 +13,13 @@ permissions:
   packages: write
 
 jobs:
-  ContinuousIntegration:
+  ci:
     name: Build → Test → Coverage → Package
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
-
-
 
       - name: Setup JDK 17
         uses: actions/setup-java@v4
@@ -34,42 +31,29 @@ jobs:
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
 
-
-      - name: Build application
+      - name: Build Application
         run: mvn clean compile
-
 
       - name: Run Unit Tests
         run: mvn test
 
-
-      - name: Run Integration Tests & JaCoCo
+      - name: Run Integration Tests & Generate JaCoCo Report
         run: mvn verify
-
-      - name: Upload JaCoCo HTML Report2
-        uses: actions/upload-artifact@v4
-        with:
-          name: Jar_file
-          path: target/*.jar
-
-      
-
-
-      - name: Package JAR
-        run: mvn package -DskipTests
-
 
       - name: Upload JaCoCo HTML Report
         uses: actions/upload-artifact@v4
         with:
-          name: jacoco-report
+          name: jacoco-html-report
           path: target/site/jacoco
 
-      - name: Jar file
+      - name: Package JAR
+        run: mvn package -DskipTests
+      - name: Upload Jar file
         uses: actions/upload-artifact@v4
         with:
-          name: Jar file
+          name: jar file
           path: target/*.jar
 
-
-
+      - name: Publish JAR to GitHub Packages
+        if: github.ref == 'refs/heads/main'
+        run: mvn deploy -DskipTests
