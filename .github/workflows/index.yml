@@ -52,7 +52,7 @@ jobs:
         env:
           WAI: ${{ vars.WHEREAMI }}
           WHOAMI: ${{ vars.WHOAMI }}
-          USERNAME: ${{ secrets.COMPANION }}
+          USERNAME: ${{ secrets.CAMPANION}}
           PASS: ${{ secrets.NAME }}
 
 

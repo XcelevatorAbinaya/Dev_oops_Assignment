@@ -15,7 +15,7 @@
 
 	<groupId>Xcelevate</groupId>
 	<artifactId>sample-java-assignment-app</artifactId>
-	<version>0.0.7</version>
+	<version>0.0.8</version>
 
 	<properties>
 		<java.version>17</java.version>
